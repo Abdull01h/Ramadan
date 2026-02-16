@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>রমজান ক্যালেন্ডার ২০২৬</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        :root {
+            --primary: #064e3b;
+            --secondary: #d97706;
+            --accent: #fcd34d;
+            --white: #ffffff;
+            --bg-gradient: linear-gradient(180deg, #022c22 0%, #065f46 100%);
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            margin: 0;
+            padding: 10px;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .main-card {
+            width: 100%;
+            max-width: 650px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 25px 15px;
+            text-align: center;
+            border-bottom: 5px solid var(--accent);
+        }
+
+        h1 { margin: 0; font-size: 2rem; }
+        
+        /* Dua Section Styles */
+        .dua-container {
+            padding: 20px;
+            background: #fffbef;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dua-box {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid #fcd34d;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .dua-title {
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .arabic {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            direction: rtl;
+            color: #111;
+            line-height: 1.6;
+            display: block;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-around;
+            background: #f1f5f9;
+            padding: 15px;
+        }
+
+        .status-item span { display: block; font-size: 0.85rem; color: #64748b; font-weight: bold; text-align: center; }
+        .status-item strong { font-size: 1.2rem; color: var(--primary); display: block; text-align: center; }
+
+        .table-wrapper {
+            max-height: 50vh;
+            overflow-y: auto;
+            width: 100%;
+        }
+
+        table { width: 100%; border-collapse: collapse; }
+        thead th { position: sticky; top: 0; background: #e2e8f0; color: #1e293b; padding: 12px 5px; z-index: 10; font-size: 0.9rem; }
+        tbody td { padding: 12px 5px; text-align: center; border-bottom: 1px solid #f1f5f9; font-size: 0.95rem; }
+
+        .today-active { background-color: #fef3c7 !important; border-left: 6px solid var(--secondary); }
+        .badge { background: var(--secondary); color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; margin-left: 4px; }
+
+        footer { padding: 20px; text-align: center; background: #f8fafc; font-size: 0.85rem; color: #64748b; line-height: 1.6; }
+
+        @media (max-width: 500px) {
+            .dua-container { grid-template-columns: 1fr; }
+            h1 { font-size: 1.6rem; }
+            .arabic { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-card">
+    <header>
+        <h1>রমজান ক্যালেন্ডার ২০২৬</h1>
+        <div style="opacity: 0.9;">ঢাকা ও পার্শ্ববর্তী এলাকা</div>
+    </header>
+
+    <div class="dua-container">
+        <div class="dua-box">
+            <span class="dua-title">সহরির দুআ</span>
+            <span class="arabic">نَوَيْتُ اَنْ اَصُوْمَ غَدًا مِّنْ شَهْرِ رَمَضَانَ الْمُبَارَكِ فَرْضًا لَكَ يَا اَللهُ فَتَقَبَّلْ مِنِّى اِنَّكَ اَنْتَ السَّمِيْعُ الْعَلِيْمُ</span>
+        </div>
+        <div class="dua-box">
+            <span class="dua-title">ইফতারের দুআ</span>
+            <span class="arabic">اَللَّهُمَّ لَكَ صُمْتُ وَعَلَى رِزْقِكَ اَفْطَرْتُ</span>
+        </div>
+    </div>
+
+    <div class="status-bar">
+        <div class="status-item">
+            <span>আজকের তারিখ</span>
+            <strong id="live-date">--</strong>
+        </div>
+        <div class="status-item">
+            <span>বর্তমান সময়</span>
+            <strong id="live-clock">০০:০০:০০</strong>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>রমজান</th>
+                    <th>তারিখ</th>
+                    <th>বার</th>
+                    <th>সহরি</th>
+                    <th>ইফতার</th>
+                </tr>
+            </thead>
+            <tbody id="calendar-body"></tbody>
+        </table>
+    </div>
+
+    <footer>
+        <div style="color: var(--primary); font-weight: bold; margin-bottom: 5px;">ইফতারের দুআ (বাংলা অর্থ):</div>
+        <div>"হে আল্লাহ! আমি তোমারই সন্তুষ্টির জন্য রোজা রেখেছি এবং তোমারই দেয়া রিজিক দ্বারা ইফতার করছি।"</div>
+        <hr style="opacity: 0.2; margin: 15px 0;">
+        <strong>Made By Team BD Cyber Ninja</strong>
+        <hr style="opacity: 0.2; margin: 15px 0;">
+        <strong>© ২০২৬ ডিজিটাল রমজান ক্যালেন্ডার</strong>
+    </footer>
+</div>
+
+<script>
+    const ramadanData = [
+        {r: 1, d: 18, m: "ফেব্রুয়ারি", b: "বুধ", s: "০৫:১০", i: "০৫:৫৯"},
+        {r: 2, d: 19, m: "ফেব্রুয়ারি", b: "বৃহস্পতি", s: "০৫:০৯", i: "০৬:০০"},
+        {r: 3, d: 20, m: "ফেব্রুয়ারি", b: "শুক্র", s: "০৫:০৮", i: "০৬:০০"},
+        {r: 4, d: 21, m: "ফেব্রুয়ারি", b: "শনি", s: "০৫:০৭", i: "০৬:০১"},
+        {r: 5, d: 22, m: "ফেব্রুয়ারি", b: "রবি", s: "০৫:০৬", i: "০৬:০১"},
+        {r: 6, d: 23, m: "ফেব্রুয়ারি", b: "সোম", s: "০৫:০৫", i: "০৬:০২"},
+        {r: 7, d: 24, m: "ফেব্রুয়ারি", b: "মঙ্গল", s: "০৫:০৪", i: "০৬:০২"},
+        {r: 8, d: 25, m: "ফেব্রুয়ারি", b: "বুধ", s: "০৫:০৩", i: "০৬:০৩"},
+        {r: 9, d: 26, m: "ফেব্রুয়ারি", b: "বৃহস্পতি", s: "০৫:০২", i: "০৬:০৩"},
+        {r: 10, d: 27, m: "ফেব্রুয়ারি", b: "শুক্র", s: "০৫:০১", i: "০৬:০৪"},
+        {r: 11, d: 28, m: "ফেব্রুয়ারি", b: "শনি", s: "০৫:০০", i: "০৬:০৪"},
+        {r: 12, d: 1, m: "মার্চ", b: "রবি", s: "০৪:৫৯", i: "০৬:০৫"},
+        {r: 13, d: 2, m: "মার্চ", b: "সোম", s: "০৪:৫৮", i: "০৬:০৫"},
+        {r: 14, d: 3, m: "মার্চ", b: "মঙ্গল", s: "০৪:৫৭", i: "০৬:০৬"},
+        {r: 15, d: 4, m: "মার্চ", b: "বুধ", s: "০৪:৫৬", i: "০৬:০৬"},
+        {r: 16, d: 5, m: "মার্চ", b: "বৃহস্পতি", s: "০৪:৫৫", i: "০৬:০৭"},
+        {r: 17, d: 6, m: "মার্চ", b: "শুক্র", s: "০৪:৫৪", i: "০৬:০৭"},
+        {r: 18, d: 7, m: "মার্চ", b: "শনি", s: "০৪:৫৩", i: "০৬:০৮"},
+        {r: 19, d: 8, m: "মার্চ", b: "রবি", s: "০৪:৫২", i: "০৬:০৮"},
+        {r: 20, d: 9, m: "মার্চ", b: "সোম", s: "০৪:৫১", i: "০৬:০৯"},
+        {r: 21, d: 10, m: "মার্চ", b: "মঙ্গল", s: "০৪:৫০", i: "০৬:০৯"},
+        {r: 22, d: 11, m: "মার্চ", b: "বুধ", s: "০৪:৪৯", i: "০৬:১০"},
+        {r: 23, d: 12, m: "মার্চ", b: "বৃহস্পতি", s: "০৪:৪৮", i: "০৬:১০"},
+        {r: 24, d: 13, m: "মার্চ", b: "শুক্র", s: "০৪:৪৭", i: "০৬:১১"},
+        {r: 25, d: 14, m: "মার্চ", b: "শনি", s: "০৪:৪৬", i: "০৬:১১"},
+        {r: 26, d: 15, m: "মার্চ", b: "রবি", s: "০৪:৪৫", i: "০৬:১২"},
+        {r: 27, d: 16, m: "মার্চ", b: "সোম", s: "০৪:৪৪", i: "০৬:১২"},
+        {r: 28, d: 17, m: "মার্চ", b: "মঙ্গল", s: "০৪:৪৩", i: "০৬:১৩"},
+        {r: 29, d: 18, m: "মার্চ", b: "বুধ", s: "০৪:৪২", i: "০৬:১৩"},
+        {r: 30, d: 19, m: "মার্চ", b: "বৃহস্পতি", s: "০৪:৪১", i: "০৬:১৪"}
+    ];
+
+    function init() {
+        const tbody = document.getElementById('calendar-body');
+        const now = new Date();
+        const tDate = now.getDate();
+        const tMonth = now.getMonth();
+
+        ramadanData.forEach(item => {
+            const row = document.createElement('tr');
+            let isToday = false;
+            if (tMonth === 1 && item.m === "ফেব্রুয়ারি" && item.d === tDate) isToday = true;
+            if (tMonth === 2 && item.m === "মার্চ" && item.d === tDate) isToday = true;
+
+            if (isToday) row.classList.add('today-active');
+
+            row.innerHTML = `
+                <td>${item.r}${isToday ? '<span class="badge">আজ</span>' : ''}</td>
+                <td>${item.d} ${item.m}</td>
+                <td>${item.b}</td>
+                <td>${item.s}</td>
+                <td>${item.i}</td>
+            `;
+            tbody.appendChild(row);
+            if(isToday) setTimeout(() => row.scrollIntoView({ behavior: 'smooth', block: 'center' }), 500);
+        });
+    }
+
+    function updateTime() {
+        const now = new Date();
+        document.getElementById('live-clock').innerText = now.toLocaleTimeString('bn-BD');
+        document.getElementById('live-date').innerText = now.toLocaleDateString('bn-BD', {day:'numeric', month:'long'});
+    }
+
+    setInterval(updateTime, 1000);
+    init();
+    updateTime();
+</script>
+
+</body>
+              </html>
